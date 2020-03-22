@@ -5,31 +5,18 @@ import pandas as pd
 CONFIRMED_CASES_URL = f"https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data" \
                       f"/csse_covid_19_time_series/time_series_19-covid-Confirmed.csv "
 
-"""
-When downloading data it's better to do it in a global scope instead of a function.
-This speeds up the tests significantly
-"""
 confirmed_cases = pd.read_csv(CONFIRMED_CASES_URL, error_bad_lines=False)
 
 
 def poland_cases_by_date(day: int, month: int, year: int = 2020) -> int:
-    """
-    Returns confirmed infection cases for country 'Poland' given a date.
+   
+    def poland_cases_by_date(day: int, month: int, year: int = 2020) -> int:
 
-    Ex.
-    >>> poland_cases_by_date(7, 3, 2020)
-    5
-    >>> poland_cases_by_date(11, 3)
-    31
+      wynik = confirmed_cases.loc[confirmed_cases["Country/Region"]=="Poland"][f"{month}/{day}/{year}"]
 
-    :param year: 4 digit integer representation of the year to get the cases for, defaults to 2020
-    :param day: Day of month to get the cases for as an integer indexed from 1
-    :param month: Month to get the cases for as an integer indexed from 1
-    :return: Number of cases on a given date as an integer
-    """
-    
+      return wynik
     # Your code goes here (remove pass)
-    pass
+   
 
 
 def top5_countries_by_date(day: int, month: int, year: int = 2020) -> List[str]:
